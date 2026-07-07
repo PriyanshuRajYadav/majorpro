@@ -9,8 +9,10 @@ const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
 
-const MONGO_URL =
+const MONGO_URL = process.env.MONGO_URL ||
 "mongodb://priyanshurajyadav56_db_user:priyanshu123@ac-hezwv21-shard-00-00.htu9dqn.mongodb.net:27017,ac-hezwv21-shard-00-01.htu9dqn.mongodb.net:27017,ac-hezwv21-shard-00-02.htu9dqn.mongodb.net:27017/?tls=true&replicaSet=atlas-7q1t7e-shard-0&authSource=admin&retryWrites=true&w=majority";
+const PORT = process.env.PORT || 8080;
+const DEFAULT_LISTING_IMAGE = "/images/fallback-listing.svg";
 main()
  .then(()=>{
   console.log("con to db");
@@ -30,6 +32,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
+app.locals.getListingImageUrl = (listing) => {
+  const imageUrl = listing?.image?.url;
+  return typeof imageUrl === "string" && imageUrl.trim() ? imageUrl.trim() : DEFAULT_LISTING_IMAGE;
+};
 
 
 
@@ -152,6 +158,6 @@ app.get("/listings",async(req ,res )=>
 
 
 // });
-app.listen(8080 ,()=>{
-  console.log("port is listening")
+app.listen(PORT ,()=>{
+  console.log(`port is listening on ${PORT}`)
 });

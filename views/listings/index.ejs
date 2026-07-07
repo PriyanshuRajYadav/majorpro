@@ -14,7 +14,7 @@
     <%for(let listing of allListing ){%>
       <a class="listing-link" href="/listings/<%=listing._id%>">
   <div class="card listing-card col" >
-  <img src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=60' %>" class="card-img-top listing-img" alt="<%= listing.title %>">
+  <img src="<%= getListingImageUrl(listing) %>" class="card-img-top listing-img" alt="<%= listing.title %>" onerror="this.onerror=null;this.src='/images/fallback-listing.svg';">
   <div class="card-body">
     <p class="card-title"><%=listing.title%></p>
     <p class="card-location"><%=listing.location%>, <%=listing.country%></p>

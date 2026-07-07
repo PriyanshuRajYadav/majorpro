@@ -1,6 +1,6 @@
 <%layout("/layouts/boilerplate")-%>
   <section class="show-page">
-    <img class="show-img" src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=70' %>" alt="<%= listing.title %>">
+    <img class="show-img" src="<%= getListingImageUrl(listing) %>" alt="<%= listing.title %>" onerror="this.onerror=null;this.src='/images/fallback-listing.svg';">
 
     <div class="show-content">
       <p class="eyebrow"><%=listing.location%>, <%=listing.country%></p>
