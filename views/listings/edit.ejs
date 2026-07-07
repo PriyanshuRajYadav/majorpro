@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate") -%>
+
+<section class="form-page">
+  <div class="form-panel">
+    <h3>Edit Listing</h3>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="listing-form">
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" id="title" name="listing[title]" value="<%= listing.title %>" type="text" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" id="description" name="listing[description]" rows="4"><%= listing.description %></textarea>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="price">Price per night</label>
+          <input class="form-control" id="price" name="listing[price]" value="<%= listing.price %>" type="number" min="0" required>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="image">Image URL</label>
+          <input class="form-control" id="image" name="listing[image][url]" value="<%= listing.image?.url || '' %>" type="url">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-control" id="location" name="listing[location]" value="<%= listing.location %>" type="text" required>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="country">Country</label>
+          <input class="form-control" id="country" name="listing[country]" value="<%= listing.country %>" type="text" required>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <a class="btn btn-outline-secondary" href="/listings/<%= listing._id %>">Cancel</a>
+        <button class="btn btn-dark">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</section>

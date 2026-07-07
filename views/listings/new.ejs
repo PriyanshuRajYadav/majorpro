@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate") -%>
+
+<section class="form-page">
+  <div class="form-panel">
+    <h3>Create New Listing</h3>
+    <form method="POST" action="/listings" class="listing-form">
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" id="title" name="listing[title]" placeholder="Cozy beach villa" type="text" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" id="description" name="listing[description]" rows="4" placeholder="Describe the stay"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="price">Price per night</label>
+          <input class="form-control" id="price" name="listing[price]" placeholder="1500" type="number" min="0" required>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="image">Image URL</label>
+          <input class="form-control" id="image" name="listing[image][url]" placeholder="https://example.com/image.jpg" type="url">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-control" id="location" name="listing[location]" placeholder="Goa" type="text" required>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="country">Country</label>
+          <input class="form-control" id="country" name="listing[country]" placeholder="India" type="text" required>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <a class="btn btn-outline-secondary" href="/listings">Cancel</a>
+        <button class="btn btn-dark">Add Listing</button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<%layout("/layouts/boilerplate")-%>
+  <section class="show-page">
+    <img class="show-img" src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=70' %>" alt="<%= listing.title %>">
+
+    <div class="show-content">
+      <p class="eyebrow"><%=listing.location%>, <%=listing.country%></p>
+      <h3><%=listing.title%></h3>
+      <p class="show-description"><%=listing.description%></p>
+      <p class="show-price">&#8377;<%=listing.price.toLocaleString("en-IN")%> <span>/ night</span></p>
+
+      <div class="show-actions">
+        <a class="btn btn-dark" href="/listings/<%=listing._id%>/edit">Edit Listing</a>
+        <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+          <button class="btn btn-outline-danger">Delete Listing</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
